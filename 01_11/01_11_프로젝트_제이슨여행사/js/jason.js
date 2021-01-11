@@ -272,6 +272,80 @@
                 resizeFn();
             })
 
+            //페이드 인 아웃 반응형 슬라이드 웹개발
+            var cnt = 0;
+            var setId = null;
+            var $slide = $("#section3 .slide");
+            var $nextBtn = $("#section3 .nextBtn");
+            var $prevBtn = $("#section3 .prevBtn");
+            var n = $slide.length-1; // 0 1 2 슬라이드 3개 index에서 1 빼주기
+            var $pageBtn = $("#section3 .pageBtn")
+
+            //1번. 페이드 인 아웃 메인함수 만들기 
+            //1.1 메인 다음 슬라이드 함수
+            function mainNextSlideFn(){// animate({opacity:0},0).animate({opacity:1},1000)
+                                       // 안 보이다가  1초 안에 보여라
+                $slide.css({ zIndex : 1 }); //초기화 작업 | 모든 슬라이드는 zIndex 1로 설정
+                $slide.eq(cnt==0? n:cnt-1).css({ zIndex : 2 }); //현재 슬라이드의 이전 슬라이드
+                $slide.eq(cnt).stop().animate({opacity:0},0).animate({opacity:1},1000).css({ zIndex : 3 }); //현재 슬라이드
+            }
+            //1.2 메인 이전 슬라이드 함수
+            function mainPrevSlideFn(){ // animate({opacity:1},0).animate({opacity:0},1000)
+                                        // 선명하게 보였다가 1초 안에 없어져버려라
+               $slide.css({ zIndex : 1 }).stop().animate({opacity:1},0); //초기화 | 모든 슬라이드는 opacity 1로 초기화됨
+               $slide.eq(cnt).css({ zIndex : 2 });
+               $slide.eq(cnt==n?0:cnt+1).stop()/* .animate({opacity:1},0) */.animate({opacity:0},1000).css({ zIndex : 3 });
+            }
+
+            //2번. 카운트 이벤트
+            //2.1 다음 카운트 슬라이드 함수
+            function nextCountFn(){
+                cnt++;
+                if(cnt>n)cnt=0;
+                mainNextSlideFn();
+                console.log(cnt);
+            }
+
+            //2.2 이전 카운트 슬라이드 함수
+            function prevCountFn(){
+                cnt--;
+                if(cnt<0)cnt=n;
+                mainPrevSlideFn();
+                console.log(cnt);
+            }
+            //3번. 버튼클릭이벤트
+            //3.1 다음 클릭 이벤트
+            $nextBtn.on("click",function(e){
+                e.preventDefault();
+                if( !$slide.is(":animated") ){
+                    nextCountFn();}
+            })
+            //3.2 이전 클릭 이벤트
+            $prevBtn.on("click",function(e){
+                e.preventDefault();
+                if( !$slide.is(":animated") ){
+                    prevCountFn();
+                }
+            })
+
+            //4. 페이지(인디게이터) 버튼 이벤트 구현
+            //4.1 함수 생성
+
+            function pageBtnFn(){
+
+            }
+
+            //5.페이지 버튼 클릭 이벤트
+            $pageBtn.each(function(){
+                var $this = $(this);
+                    $this.on("click", function(e){
+                    e.preventDefault();
+                })
+            })
+
+
+
+
         },
         section4Fn : function(){
             
