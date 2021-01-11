@@ -253,6 +253,14 @@
             var $slideBg  = $("#section3 .slide-bg-image");
             var $slideBgW = $("#section3 .slide-bg-image").innerWidth();
             var cnt = 0;
+            var setId = null;
+            var $slide = $("#section3 .slide");
+            var $nextBtn = $("#section3 .nextBtn");
+            var $prevBtn = $("#section3 .prevBtn");
+            var n = $slide.length-1;
+            var $pageBtn = $("#section3 .pageBtn")
+            var a =[1,2];
+            var imsi = null;
 
             setTimeout(resizeFn,10);
 
@@ -274,18 +282,88 @@
             })
 
             function mainNextSlideFn(){
-
+                $slide.css({ zIndex : 1 });
+                $slide.eq(cnt==0?n:cnt-1).css({ zIndex : 2 });
+                $slide.eq(cnt).css({ zIndex : 3 }).stop().animate({ opacity:0 },0).animate({ opacity:1 },800);
+                pageFn();
             }
             function mainPrevSlideFn(){
-
+                $slide.css({ zIndex : 1 }).stop().animate({ opacity:1 },0);
+                $slide.eq(cnt).css({ zIndex : 2 })
+                $slide.eq(cnt==n?0:cnt+1).css({ zIndex : 3 }).stop().animate({ opacity:0 },800);
+                pageFn();
             }
             function nextCountFn(){
-
+                cnt++;
+                if(cnt>n){cnt=0};
+                mainNextSlideFn();   
             }
             function prevCountFn(){
-
+                cnt--;
+                if(cnt<0){cnt=n};
+                mainPrevSlideFn();
             }
 
+            $nextBtn.on("click", function(e){
+                e.preventDefault();
+                if( !$slide.is(":animated") ){
+                    nextCountFn();
+                }
+            })
+
+            $prevBtn.on("click", function(e){
+                e.preventDefault();
+                if( !$slide.is(":animated") ){
+                    prevCountFn();
+                }
+            })
+
+            function pageFn(){
+                switch(cnt){
+
+                case 0 : //메인 슬라이드가 0일 때
+                //$pageBtn.eq(0).css({ backgroundImage : "url(./img/main-slide" + 1 + ".jpg)" })
+                //$pageBtn.eq(1).css({ backgroundImage : "url(./img/main-slide" + 2 + ".jpg)" })
+                a=[1,2];
+                break;
+                
+                case 1 : //메인 슬라이드가 1일 때
+                //$pageBtn.eq(0).css({ backgroundImage : "url(./img/main-slide" + 0 + ".jpg)" })
+                //$pageBtn.eq(1).css({ backgroundImage : "url(./img/main-slide" + 2 + ".jpg)" })
+                a=[0,2];
+                break;
+                
+                case 2 : //메인 슬라이드가 2일 때
+                //$pageBtn.eq(0).css({ backgroundImage : "url(./img/main-slide" + 0 + ".jpg)" })
+                //$pageBtn.eq(1).css({ backgroundImage : "url(./img/main-slide" + 1 + ".jpg)" })
+                a=[0,1];
+                }
+
+                for(i=0;i<a.length;i++){
+                    $pageBtn.eq(i).css({ backgroundImage : "url(./img/main-slide" + a[i] + ".jpg)" })
+                }
+            }
+
+            $pageBtn.each(function(idx){
+                var $this = $(this);
+                $this.on("click",function(e){
+                    e.preventDefault();
+                        
+                        imsi = cnt;
+                        cnt = a[idx];
+                        
+                        if( imsi < a[idx] ){
+                            mainNextSlideFn();
+                        }
+                        else if( imsi > a[idx] ){
+                            mainPrevSlideFn();
+                        }
+
+                        console.log(a, a[idx]);
+                        console.log(cnt);
+                        console.log(imsi);
+                    })
+            })
 
         },
         section4Fn : function(){
