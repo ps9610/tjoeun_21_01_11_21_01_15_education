@@ -134,7 +134,7 @@
 #wrap #main #section3 .wrap .gap .container .content .slide-container .slide-view .slide-wrap .slide .slide-content {width:100%;max-width:1360px;height:100%;margin:0 auto;padding:0 5.882352941%/* 80px */;}
 #wrap #main #section3 .wrap .gap .container .content .slide-container .slide-view .slide-wrap .slide .slide-content .left-wrap {float:left;width:41.91176471%/* 570px */;height:100%;margin-top:-5%/* 약 -60px에서 /2 또 해줌 */;transition:all .3s;}
 #wrap #main #section3 .wrap .gap .container .content .slide-container .slide-view .slide-wrap .slide .slide-content .left-wrap .slide-bg-image {width:100%;height:100%;}
-#wrap #main #section3 .wrap .gap .container .content .slide-container .slide-view .slide-wrap .slide1 .slide-content .left-wrap .slide-bg-image {background:url(../img/main-slide0.jpeg) no-repeat 50% 50%;background-size:cover;}
+#wrap #main #section3 .wrap .gap .container .content .slide-container .slide-view .slide-wrap .slide1 .slide-content .left-wrap .slide-bg-image {background:url(../img/main-slide0.jpg) no-repeat 50% 50%;background-size:cover;}
 #wrap #main #section3 .wrap .gap .container .content .slide-container .slide-view .slide-wrap .slide2 .slide-content .left-wrap .slide-bg-image {background:url(../img/main-slide1.jpg) no-repeat 50% 50%;background-size:cover;}
 #wrap #main #section3 .wrap .gap .container .content .slide-container .slide-view .slide-wrap .slide3 .slide-content .left-wrap .slide-bg-image {background:url(../img/main-slide2.jpg) no-repeat 50% 50%;background-size:cover;}
 

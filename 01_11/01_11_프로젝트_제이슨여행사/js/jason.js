@@ -279,7 +279,8 @@
             var $nextBtn = $("#section3 .nextBtn");
             var $prevBtn = $("#section3 .prevBtn");
             var n = $slide.length-1; // 0 1 2 슬라이드 3개 index에서 1 빼주기
-            var $pageBtn = $("#section3 .pageBtn")
+            var $pageBtn = $("#section3 .pageBtn");
+            var a = [1,2]; //초기값 | 페이지2번 3번 
 
             //1번. 페이드 인 아웃 메인함수 만들기 
             //1.1 메인 다음 슬라이드 함수
@@ -288,6 +289,7 @@
                 $slide.css({ zIndex : 1 }); //초기화 작업 | 모든 슬라이드는 zIndex 1로 설정
                 $slide.eq(cnt==0? n:cnt-1).css({ zIndex : 2 }); //현재 슬라이드의 이전 슬라이드
                 $slide.eq(cnt).stop().animate({opacity:0},0).animate({opacity:1},1000).css({ zIndex : 3 }); //현재 슬라이드
+                pageBtnFn();
             }
             //1.2 메인 이전 슬라이드 함수
             function mainPrevSlideFn(){ // animate({opacity:1},0).animate({opacity:0},1000)
@@ -295,6 +297,7 @@
                $slide.css({ zIndex : 1 }).stop().animate({opacity:1},0); //초기화 | 모든 슬라이드는 opacity 1로 초기화됨
                $slide.eq(cnt).css({ zIndex : 2 });
                $slide.eq(cnt==n?0:cnt+1).stop()/* .animate({opacity:1},0) */.animate({opacity:0},1000).css({ zIndex : 3 });
+               pageBtnFn();
             }
 
             //2번. 카운트 이벤트
@@ -331,18 +334,86 @@
             //4. 페이지(인디게이터) 버튼 이벤트 구현
             //4.1 함수 생성
 
-            function pageBtnFn(){
+            //배열을 사용하지 않은 상태
+            /* function pageBtnFn(){ //background는 속성 바꿀때 꼭 어떤 속성을 바꾸는지 상세하게 기입하기
 
+                switch (cnt){ //cnt를 매개변수로 받아서 메인함수와 연결해주기
+                    case 0 :  //첫번째 슬라이드인 경우
+                    $pageBtn.eq(0).css({ backgroundImage : "url(./img/main-slide1.jpg)" })
+                    $pageBtn.eq(1).css({ backgroundImage : "url(./img/main-slide2.jpg)" })
+                    break;
+
+                    case 1: //두번째 슬라이드인 경우
+                        $pageBtn.eq(0).css({ backgroundImage : "url(./img/main-slide0.jpg)" })
+                        $pageBtn.eq(1).css({ backgroundImage : "url(./img/main-slide2.jpg)" })
+                    break;
+
+                    case 2:  //마지막 슬라이드인 경우
+                        $pageBtn.eq(0).css({ backgroundImage : "url(./img/main-slide0.jpg)" })
+                        $pageBtn.eq(1).css({ backgroundImage : "url(./img/main-slide1.jpg)" }) 
+                }
+            } */
+
+            
+            function pageBtnFn(){ //background는 속성 바꿀때 꼭 어떤 속성을 바꾸는지 상세하게 기입하기
+
+                switch (cnt){ //cnt를 매개변수로 받아서 메인함수와 연결해주기
+                    case 0 : //첫번째 슬라이드인 경우
+                    a=[1,2]; //파일 인덱스번호
+                    break;
+
+                    case 1: //두번째 슬라이드인 경우
+                    a=[0,2]; //파일 인덱스번호
+                    break;
+
+                    case 2:  //마지막 슬라이드인 경우
+                    a=[0,1]; //파일 인덱스번호
+                }
+                
+                //console.log(a);
+                //console.log(cnt);
+                //for문으로 바꿔줄것
+                //$pageBtn.eq(0).css({ backgroundImage : "url(./img/main-slide" + a[0]/* 0 2 1 1 : 규칙적 X */ + ".jpg)" })
+                //$pageBtn.eq(1).css({ backgroundImage : "url(./img/main-slide" + a[1]/* 1 3 3 2 : 규칙적 X */ + ".jpg)" })
+
+                for( i=0;i<a.length;i++ ){ // a는 0,1
+                    $pageBtn.eq(i).css({ backgroundImage : "url(./img/main-slide" + a[i] + ".jpg)" })
+                }
             }
 
             //5.페이지 버튼 클릭 이벤트
-            $pageBtn.each(function(){
+            $pageBtn.each(function(idx){
                 var $this = $(this);
                     $this.on("click", function(e){
                     e.preventDefault();
+                    //바뀌기 전
+                        //console.log("(전)현재 진행중인 슬라이드",cnt); // 현재 진행중인 슬라이드
+                        //console.log("(전)우리가 클릭한 슬라이드",a); // 우리가 클릭한 슬라이드
+
+                    // cnt가 idx를 비교해야 하기 때문에 imsi에 넣어서 비교한 후 다시 cnt에 넣어줌
+                    var imsi = cnt; //현재 실행중이 슬라이드 번호를 임시에 넣어 보관 | 임시랑 내가 클릭한거랑 비교할거임
+                        // cnt = idx; // 현재 슬라이드 번호가 idx 번호로 바뀌게끔, 
+                        cnt = a[idx]; // 근데 바뀌여야 하는 번호가 그냥 idx가 아니고 a의 배열값대로 바뀌여야 함 | a[1,2] | 배열값(인수), 클릭한 인수에 해당된 배열 값 a[1]=2
+                                        //나머지 idx도 다 배열로
+                        if( imsi < a[idx] /* imsi : 현재 슬라이드, 클릭한거 : idx, 클릭한 번호(idx)가 더 클때 */ ){
+                            mainNextSlideFn(); // 함수 실행 범위( scope )에 변수 cnt가 할당
+                        }
+                        else if( imsi > a[idx] ){/* 클릭한 번호(idx)가 더 작을 때 */
+                            mainPrevSlideFn();
+                        }
+                    
+                    //바뀐 후    
+                        //console.log("(후)현재 진행중인 슬라이드",cnt); // 현재 진행중인 슬라이드
+                        //console.log("(후)우리가 클릭한 슬라이드 배열",a); // 우리가 클릭한 슬라이드 페이지 버튼 배열
+                        //console.log("(후)우리가 클릭한 슬라이드",a[idx]); // 우리가 클릭한 슬라이드 페이지
+
                 })
             })
 
+            //슬라이드와 페이지번호 변화관계 | 122 213 312 122 213 312...
+                //메인0 페이지[1] 페이지[2]
+                //메인1 페이지[0] 페이지[2]
+                //메인2 페이지[0] 페이지[1]
 
 
 

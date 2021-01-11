@@ -252,6 +252,7 @@
             var $pageWrap = $("#section3 .page-wrap");
             var $slideBg  = $("#section3 .slide-bg-image");
             var $slideBgW = $("#section3 .slide-bg-image").innerWidth();
+            var cnt = 0;
 
             setTimeout(resizeFn,10);
 
@@ -271,6 +272,20 @@
             $window.resize(function(){
                 resizeFn();
             })
+
+            function mainNextSlideFn(){
+
+            }
+            function mainPrevSlideFn(){
+
+            }
+            function nextCountFn(){
+
+            }
+            function prevCountFn(){
+
+            }
+
 
         },
         section4Fn : function(){
