@@ -415,11 +415,122 @@
                 //메인1 페이지[0] 페이지[2]
                 //메인2 페이지[0] 페이지[1]
 
-
-
         },
         section4Fn : function(){
+            var $slideCon = $("#section4 .slide-container");
+            var $slideConW = $slideCon.innerWidth();
+            var $slideWrap = $("#section4 .slide-wrap");
+            var $slideN = 3; // 1570/3 에서 3
+            var $slideW = $slideConW / $slideN; // 1570/3
+            var $window = $(window);
+
+            var $slide = $("#section4").find(".slide");
+            var $totn = $slide.length;
+
+            var cnt = 0;
+            var $pageBtn = $("#section4 .pageBtn")
+
+            var cnt2 = 0;
+            var setId2 = 0;
             
+            setTimeout(resizeFn,10);
+            function resizeFn(){
+
+                if( $slideConW>980 ){
+                    $slideN = 3;
+                }
+                else if( $slideConW>680 ){
+                    $slideN = 2;
+                }
+                else{
+                    $slideN = 1;
+                }
+                
+                $slideW = $slideConW / $slideN;
+                $slideWrap.css({ width : ($slideW*$totn)/* 523.3333*10 */, marginLeft : -($slideW*3) });
+                $slide.css({ width:$slideW, height : ($slideW-40) });
+                $slideWrap.stop().animate({ left : $slideW*cnt },0) //왼쪽으로 치우치지 않게 하는 것
+            }
+
+            $window.resize(function(){
+                resizeFn();
+            })
+
+            function mainSlideFn(){
+                $slideWrap.stop().animate({ left : -($slideW*cnt) },600,function(){
+                    if(cnt>3){cnt=0};
+                    if(cnt<0){cnt=3};
+                    $slideWrap.stop().animate({ left : -($slideW*cnt) },0)
+                });
+                pagiNationFn(cnt);
+            };
+
+            function nextSlideFn(){
+                cnt++;
+                mainSlideFn();
+            };
+
+            function prevSlideFn(){
+                cnt--;
+                mainSlideFn();
+            };
+
+            $slideCon.swipe({
+                swipeLeft : function(e){
+                    e.preventDefault();
+                    stopTimerFn();
+                    if( !$slideWrap.is(":animated") ){
+                        nextSlideFn();
+                    }
+                },
+                swipeRight : function(e){
+                    e.preventDefault();
+                    stopTimerFn();
+                    if( !$slideWrap.is(":animated") ){
+                        prevSlideFn();
+                    }
+                }
+            })
+
+            function pagiNationFn(z){
+                cnt = z;
+                z > 3? z=0:z;
+                z < 0? z=3:z;
+                $pageBtn.removeClass("addPage");
+                $pageBtn.eq(z).addClass("addPage");
+            }
+
+            $pageBtn.each(function(idx){
+                var $this = $(this);
+                $this.on("click",function(e){
+                    e.preventDefault();
+                    stopTimerFn();
+                    cnt = idx;
+                    mainSlideFn();
+                })
+            })            
+
+            setTimeout(autoSetTimerFn,10);
+            function autoSetTimerFn(){
+                setId = setInterval(nextSlideFn,6000);
+            }
+
+            function stopTimerFn(){
+                clearInterval(setId);
+                clearInterval(setId2);
+                cnt2 = 0;
+                setId2 = setInterval(function(){
+                    cnt2++;
+                    if(cnt2>6){
+                        clearInterval(setId2);
+                        autoSetTimerFn();
+                        //6초 더 안기다리려면 nextSlideFn 바로 실행
+                        nextSlideFn();
+                    }
+                },1000);
+
+            }
+
         },
         section5Fn : function(){
             
