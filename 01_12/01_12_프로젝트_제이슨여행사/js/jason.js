@@ -414,12 +414,134 @@
                 //메인0 페이지[1] 페이지[2]
                 //메인1 페이지[0] 페이지[2]
                 //메인2 페이지[0] 페이지[1]
-
-
-
         },
         section4Fn : function(){
+            // 슬라이드 컨테이너 박스 너비에 따른 슬라이드 3개의 너비 구하기
+            // 1570 - (margin 20 * 2) 40 = 1530
+            // 슬라이드 너비는 1570/3
+            // 반응형으로 슬라이드 컨테이너(".slide-container") 박스 너비 변화에 따른 슬라이드 너비 계산 자동으로 되게 하기
+
+            var $slideN = 3; // 슬라이드가 보여지는 갯수 : 980 초과(pc) 3, 980이하(tablet) 2, 600이하(mobile)
+            var $slideCon = $("#section4 .slide-container");
+            var $slideConW = $slideCon.innerWidth()
+            var $slideWrap = $("#section4 .slide-wrap")  
+            var $slide = $("#section4 .slide");
+            var $totN = $slide.length;//슬라이드의 총 갯수 10개
+            var $slideW = $slideConW / $slideN;
+            var $window = $(window);
+            var cnt = 0;
+            var setId = null;
+            var $pageBtn = $("#section4 .pageBtn");
+            var cnt2 = 0;
+            var setId2 = null;
             
+            setTimeout(resizeFn,10);//처음 로딩시 1번만 (또는 새로고침 때)
+            function resizeFn(){
+                if( $slideConW>1024 ){ //1025까지는 3개
+                    $slideN = 3;
+                }
+                else if( $slideConW>680 ){ //1024~761까지는 2개
+                    $slideN = 2;
+                }
+                else { //760~는 1개
+                    $slideN = 1; 
+                }
+
+                $slideW = $slideCon.innerWidth() / $slideN; // 1570/3 | 슬라이드 1개의 너비
+                $slideWrap.css({ width : ($slideW*$totN), marginLeft : -($slideW*3) });// 가상슬라이드 3 진짜 4 가상 3
+                $slide.css({ width : $slideW, height : $slideW-40 });
+                $slideWrap.stop().animate({ left:-($slideW*cnt) },0); //미리 가운데로 조정되고 따로 애니메이션은 없음
+                // mainSlideFn(); //움직이면서 화면 가운데로 맞춰지는 반응형
+            }
+            
+                //1.메인 슬라이드 함수
+                function mainSlideFn(){
+                    $slideWrap.stop().animate({ left:-($slideW*cnt) },600,"easeInQuad",function(){
+                        if( cnt > 3 ){ cnt = 0 };
+                        if( cnt < 0 ){ cnt = 3 };
+                        $slideWrap.stop().animate({ left:-($slideW*cnt) },0);
+                    });
+                    pageBtnEventFn();
+                }
+                //2.1 nextCount 슬라이드 함수
+                function nextCountSlideFn(){
+                    cnt++;
+                    mainSlideFn();
+                }
+                //2.2 이전 슬라이드
+                function prevCountSlideFn(){
+                    cnt--;
+                    mainSlideFn();
+                }
+
+                //3. 스와이프 다음/이전 터치 이벤트
+                $slideCon.swipe({
+                    swipeLeft : function(e){
+                        e.preventDefault();
+                        timerFn();
+                        if( !$slideWrap.is(":animated") ){
+                            nextCountSlideFn();
+                            //console.log("다음슬라이드 터치 이벤트")
+                        }
+                    },
+                    swipeRight : function(e){
+                        e.preventDefault();
+                        timerFn();
+                        if( !$slideWrap.is(":animated") ){
+                            prevCountSlideFn();
+                            //console.log("이전슬라이드 터치 이벤트")
+                        }
+                    }
+                })
+
+                    //4. 페이지버튼 이벤트 함수
+                    function pageBtnEventFn(){
+                        var z = cnt;
+                        if(z>3){z=0};
+                        if(z<0){z=3};
+                        $pageBtn.removeClass("addPage");
+                        $pageBtn.eq(z).addClass("addPage");
+                    }
+
+                    //5. 페이지버튼 클릭 이벤트 함수
+                        //직접 메인 함수연동 // 내가 클릭한 번호가 바로 메인함수로 연결되어야함
+                    $pageBtn.each(function(idx){
+                        var $this = $(this);
+                        $this
+                        .on("click", function(e){
+                            e.preventDefault();
+                            timerFn();
+                            cnt=idx; // 직접 선택한 슬라이드 번호를 이용, 메인 슬라이드 함수 호출
+                            mainSlideFn();
+                        });
+                    })
+
+                    //6. 자동 실행 타이머 6초 간격 함수
+                    setTimeout(autoPlayFn,10);
+                    function autoPlayFn(){
+                        setId = setInterval(nextCountSlideFn,6000)
+                    }
+
+                    //7. 타이머 실행
+                    function timerFn(){
+                        cnt2 = 0; //cnt2도 증가하고 있었기 때문에 초기화 시켜주어야함
+                        clearInterval(setId); //전체 타이머 중지
+                        clearInterval(setId2); //이전에 실행되고 있었던 타이머 중지
+                        setId2 = setInterval(function(){
+                            cnt2++;
+                            console.log(cnt2);
+                            if(cnt2>5){
+                                clearInterval(setId2);
+                                autoPlayFn();
+                                nextCountSlideFn(); // 이거 없으면 autoPlayFn()에 걸려있는 6초도 또 기다려야 하기 때문에 즉각실행되도록 이거 써줌
+                            }
+                        },1000) //1초에 한 번씩 콜백함수를 무한히 실행하라.
+                    }
+
+            $window.resize(function(){//크기가 변경될때만 반응
+                resizeFn();
+            })
+
         },
         section5Fn : function(){
             
@@ -430,4 +552,4 @@
     }
 
     jason.init();
-})(jQuery,window,document,);
+})(jQuery,window,document);
