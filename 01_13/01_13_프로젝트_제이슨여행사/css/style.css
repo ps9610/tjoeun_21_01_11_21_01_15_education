@@ -199,8 +199,12 @@
 #wrap #main #section4 .wrap .gap .container .content .slide-container .pageBtn-wrap > ul > li > a {display:block;width:100%;height:100%;background:#f6f6f6;border:1px solid #888;border-radius:50%;overflow:hidden;}
 #wrap #main #section4 .wrap .gap .container .content .slide-container .pageBtn-wrap > ul > li > a.addPage {border:1px solid #2e3192;background:#2e3192;}
 
+#wrap #main #section5 {height:auto;padding:30px 0;}
+#wrap #main #section5 .wrap .gap .container > ul {width:100%;text-align:center;}
+#wrap #main #section5 .wrap .gap .container > ul > li {display:inline-block;width:16.666667%;}
+#wrap #main #section5 .wrap .gap .container > ul > li > a {display:inline-block;margin:10px}
+#wrap #main #section5 .wrap .gap .container > ul > li > a > img {width:100%;max-height:53px;}
 
-#wrap #main #section5 {height:250px;/* 임시높이 */padding:30px 0;}
 #wrap #footer {z-index:2;position:relative;width:100%;height:253.4px;/* 임시높이 */background:#303030;} 
 /* 고정이미지가 내려가면 푸터를 가리니까(마치 몸통은 이불덮고 발은 나오것마냥) z-index 순서를 메인이랑 바꿈 */
 
