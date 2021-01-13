@@ -19,6 +19,8 @@
 
     #wrap #main #section2 .wrap .gap .container .content .gallery > li .gallery-wrap .caption > h4 {font-size:/* 14px */0.8917197452vw;}/* 창너비에 따른 비율계산 */
     #wrap #main #section2 .wrap .gap .container .content .gallery > li .gallery-wrap .caption > h3 {font-size:/* 20px */1.2738853503vw;}/* 창너비에 따른 비율계산 */
+
+    #wrap #main #section5 .wrap .gap .container > ul > li {width:33.3333333%;}
 }
 
 @media all and (max-width:1024px){ /* 모바일 모드 */

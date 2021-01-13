@@ -19,6 +19,11 @@
             var $htmlBody = $("html, body");
             var $section2 = $("#section2");
             var t = false;
+            var $menuBar= $("#header .menu-bar");
+            var $nav = $("#nav");
+            var m = 0; //햄버거메뉴 토글변수, 클릭하지않은상태
+            var $mainBtn = $("#nav .mainBtn");
+            var $sub = $("#nav .sub");
 
             //마우스 오버시 헤더스타일 바뀌기
             $header.on({
@@ -28,11 +33,42 @@
                 },
                 mouseleave : function(){
                     $this = $(this);
-                    if( $scroll === false ){ //스크롤 논리값이 false일때만 removeClass하고 아니라면 마우스리브를 해도 절대 removeClass하지 말아라
+                    if( $scroll === false &&  m===0 ){ //스크롤 논리값이 false일때, 그리고 m=0임이 참일때 removeClass하고 아니라면 마우스리브를 해도 절대 removeClass하지 말아라
                         $this.removeClass("addHeader");
                     }
                 }
             });
+
+            
+            //햄버거 메뉴 클릭하면 기억하는 변수 설정
+            //NAV 네비게이션 이벤트
+            $menuBar.on({
+                click : function(){
+                    if( m==0 ){
+                        m=1;
+                        $nav.stop().animate({ top : 124 },500);
+                    }
+                    else if( m==1 ){
+                        m=0;
+                        $nav.stop().animate({ top : -124 },500);
+                    }
+                    var $this = $(this);
+                    $this.toggleClass("addBtn");
+                }
+            })
+
+            $mainBtn.on({
+                mouseenter : function(){
+                    var $this = $(this);
+                    $sub.stop().slideUp(300);
+                    $this.next(".sub").stop().slideDown(300);
+                }
+            })
+            $nav.on({
+                mouseleave : function(){
+                    $sub.stop().slideUp(300);
+                }
+            })
 
             //휠마우스이벤트
             $window.scroll(function(){
@@ -48,7 +84,9 @@
                 else{
                     t = false;
                     $scroll = false; //스크롤 30px 이하인 경우 true로 변경하라
-                    $header.removeClass("addHeader"); 
+                    if( m===0 ){ // 햄버거 메뉴가 클릭이 안 된 상태에서만 removeClass(헤더배경없앰)
+                        $header.removeClass("addHeader"); 
+                    }
                 }
             });
 

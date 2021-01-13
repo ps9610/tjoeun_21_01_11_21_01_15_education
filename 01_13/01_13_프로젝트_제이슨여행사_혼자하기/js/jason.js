@@ -547,7 +547,23 @@
             
         },
         footerFn : function(){
+           /*  var $window = $(window);
+            var $winW = $(window).innerWidth();
+            var $footer = $("footer");
+            var $footerH2 = $footer.find("h2");
+            var $footerH2W = 
+            var $footerW = $("footer").innerWidth();
+
+            setTimeout(resizeFn,10);
+            function resizeFn(){
+                $footerH2W = $footerH2.innerWidth();
                 
+                $footerH2.css({ width : footerH2W  });
+            }
+
+            $window.resize(function(){
+                resizeFn();
+            }) */
         }
     }
 

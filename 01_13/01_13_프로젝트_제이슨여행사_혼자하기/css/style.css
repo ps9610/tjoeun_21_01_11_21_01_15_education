@@ -200,7 +200,34 @@
 #wrap #main #section4 .wrap .gap .container .content .slide-container .pageBtn-wrap > ul > li > a.addPage {border:1px solid #2e3192;background:#2e3192;}
 
 
-#wrap #main #section5 {height:250px;/* 임시높이 */padding:30px 0;}
-#wrap #footer {z-index:2;position:relative;width:100%;height:253.4px;/* 임시높이 */background:#303030;} 
+#wrap #main #section5 {height:auto;padding:30px 0;}
+#wrap #main #section5 .wrap .gap .container > ul {width:100%;text-align:center;}
+#wrap #main #section5 .wrap .gap .container > ul > li {display:inline-block;width:16.666667%;}
+#wrap #main #section5 .wrap .gap .container > ul > li > a {display:inline-block;margin:10px;}
+#wrap #main #section5 .wrap .gap .container > ul > li > a > img {width:auto;max-height:55px;}
+
+#wrap #footer {z-index:2;position:relative;width:100%;height:auto;background:#303030;} 
 /* 고정이미지가 내려가면 푸터를 가리니까(마치 몸통은 이불덮고 발은 나오것마냥) z-index 순서를 메인이랑 바꿈 */
+#wrap #footer .wrap {width:100%;max-width:1200px;margin:0 auto;}
+#wrap #footer .wrap .gap .container > ul {width:100%;text-align:center;}
+#wrap #footer .wrap .gap .container > ul > li {display:inline-block;text-align:center;}
+#wrap #footer .wrap .gap .container > ul .left {width:34.333333333%;}
+#wrap #footer .wrap .gap .container > ul .left > h2 {width:78.1553398%;padding:54.25px 45px 54.25px 45px;box-sizing:border-box;}
+#wrap #footer .wrap .gap .container > ul .left > h2 > img {width:100%;max-height:58px;}
+
+#wrap #footer .wrap .gap .container > ul .center {width:43.16666667%;}
+#wrap #footer .wrap .gap .container > ul .center .center-top {display:inline-block;border-bottom:1px solid #404040;box-sizing:border-box;}
+#wrap #footer .wrap .gap .container > ul .center .center-top > li {display:inline-block;padding:0 60px 15px 0;box-sizing:border-box;}
+#wrap #footer .wrap .gap .container > ul .center .center-top > li:last-child {padding:0 0 15px 0;}
+#wrap #footer .wrap .gap .container > ul .center .center-top > li > div {width:100%;} 
+#wrap #footer .wrap .gap .container > ul .center .center-top > li > div > a {display:inline-block;color:#fff;font-size:16px;line-height:20.8px;font-weight:500;} 
+#wrap #footer .wrap .gap .container > ul .center .center-bottom {width:100%;margin-top:20px;}
+#wrap #footer .wrap .gap .container > ul .center .center-bottom > p {color:rgba(170, 170, 170, 0.3);padding:2.5px 0;}
+
+#wrap #footer .wrap .gap .container > ul .right {width:22.25%;}
+#wrap #footer .wrap .gap .container > ul .right > ul {margin:0 0 28.10630930% 37.4531835%/* 75px 100px */;border-bottom:1px solid #404040;box-sizing:border-box;} 
+#wrap #footer .wrap .gap .container > ul .right > ul > li {display:inline-block;padding:0 29.0877193% 15px/* 50px 15px */ 0;box-sizing:border-box;} 
+#wrap #footer .wrap .gap .container > ul .right > ul > li:last-child {display:inline-block;padding:0 0 15px 0;box-sizing:border-box;} 
+#wrap #footer .wrap .gap .container > ul .right > ul > li > a {display:inline-block;color:#fff;line-height:20.8px;}
+#wrap #footer .wrap .gap .container > ul .right > ul > li > a > img {display:block;width:100%;} 
 
