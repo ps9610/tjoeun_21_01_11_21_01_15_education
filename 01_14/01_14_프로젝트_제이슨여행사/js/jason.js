@@ -12,9 +12,11 @@
         },
         headerFn   : function(){
             var $this = null;
+            var $html = $("html");
             var $header = $("#header");
             var $headerH = $header.innerHeight();
             var $window = $(window);
+            var $windowW = $window.innerWidth();
             var $scroll = false; //스크롤 여부를 알려주는 변수
             var $htmlBody = $("html, body");
             var $section2 = $("#section2");
@@ -22,8 +24,10 @@
             var $menuBar= $("#header .menu-bar");
             var $nav = $("#nav");
             var m = 0; //햄버거메뉴 토글변수, 클릭하지않은상태
-            var $mainBtn = $("#nav .mainBtn");
+            var $mainBtn = $("#nav .main-btn");
             var $sub = $("#nav .sub");
+            var s = 1; // 네비게이션 탑 값 부호
+            var topPos = 124; 
 
             //마우스 오버시 헤더스타일 바뀌기
             $header.on({
@@ -39,31 +43,74 @@
                 }
             });
 
+            //1024 이하이면 $nav top : 84
+            //768 이하이면 $nav top : 64
+
+            $window.resize(function(){
+                resizeFn();
+            })
+
+            // 화면의 크기 변화에 따른 반응형 메뉴 (데스크탑, 태블릿, 모바일)
+            setTimeout(resizeFn,10);
+            function resizeFn(){
+                if( $windowW > 1024 ){
+                    topPos = -124; 
+                    //$sub.stop().slideUp(0);
+                    $nav.stop().show(0).stop().animate({ top : s*topPos },500); //else에 hide를 써줬기 때문에 show를 써줘야 보이면서 애니메이션이 실행됨
+                    //s를 곱해줌으로써 코딩도 줄이고 부호도 설정해줌, 처음 로딩시 음수로 설정하여 위로 숨김
+                }
+                else if( $windowW > 780 ){
+                    topPos = -84;
+                    //$sub.stop().slideUp(0);
+                    $nav.stop().show(0).stop().animate({ top : s*topPos },500);
+                }
+                else{
+                    topPos = 0;
+                    $sub.stop().slideDown(0);
+                    $nav.stop().animate({ top : s*topPos },0)
+                    if(  m==1 ){ //햄버거 메뉴를 처음 클릭하면
+                        $nav.stop().show(0);
+                        $html.addClass("addScroll");
+
+                    }
+                    else{ //햄버거 메뉴를 두번째 클릭하면
+                        $nav.stop().hide(0);
+                        $html.removeClass("addScroll");
+                    }
+                }
+            }
+
             
             //햄버거 메뉴 클릭하면 기억하는 변수 설정
             //NAV 네비게이션 이벤트
-            $menuBar.on({
-                click : function(){
-                    if( m==0 ){
-                        m=1;
-                        $nav.stop().animate({ top : 124 },500);
+                $menuBar.on({
+                    click : function(){
+                        if( m==0 ){ // 햄버거 메뉴 처음 클릭
+                            m=1;
+                            s=-1; //$nav.stop().animate({ top : topPos },500);를 밑에다가 하나만 써서 음수인지 양수인지 구분해줌
+                        }
+                        else{ //햄버거 메뉴 두번째클릭
+                            m=0;
+                            s=1; //$nav.stop().animate({ top : topPos },500);를 밑에다가 하나만 써서 음수인지 양수인지 구분해줌 
+                        }
+                        resizeFn(); //버튼의 클릭시 변화를 주는 반응형 함수
+                        var $this = $(this);
+                        $this.toggleClass("addBtn");
+
                     }
-                    else if( m==1 ){
-                        m=0;
-                        $nav.stop().animate({ top : -124 },500);
+
+                })
+            
+            $mainBtn.on({
+                mouseenter : function(){
+                    if( $windowW > 780 ){
+                        var $this = $(this);
+                        $sub.stop().slideUp(300);
+                        $this.next(".sub").stop().slideDown(300);
                     }
-                    var $this = $(this);
-                    $this.toggleClass("addBtn");
                 }
             })
 
-            $mainBtn.on({
-                mouseenter : function(){
-                    var $this = $(this);
-                    $sub.stop().slideUp(300);
-                    $this.next(".sub").stop().slideDown(300);
-                }
-            })
             $nav.on({
                 mouseleave : function(){
                     $sub.stop().slideUp(300);
