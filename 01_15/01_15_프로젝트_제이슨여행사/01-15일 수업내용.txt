@@ -1,0 +1,5 @@
+[ 01-15일 수업내용 ]
+1. header php와 footer php 생성
+2. php를 이용하여 제이슨 여행사의 로그인 페이지 만들기
+3. php는 서버에서만 열린다. 
+    3-1. localhost/jason/login.php
