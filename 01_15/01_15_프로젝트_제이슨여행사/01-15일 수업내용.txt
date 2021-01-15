@@ -1,0 +1,8 @@
+[ 01-15일 수업내용 ]
+1. header php와 footer php 생성
+2. php를 이용하여 제이슨 여행사의 로그인 페이지 만들기
+3. php는 서버에서만 열린다. 
+    3-1. localhost/jason/login.php
+4. login.php를 모델링
+5. php 파일에서는 최대한 id가 중복되지 않게 네이밍하기 !!! 중복되면 나중에 만든게 안보임 !!!
+6. js도 index.html과 php 파일 네이밍 겹치지 않게 변수 재설정하기

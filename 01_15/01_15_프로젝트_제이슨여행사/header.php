@@ -8,7 +8,7 @@
     <meta name="Viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0. maximum-scale=1.6, user-scalable=no">
     <meta name="Title" content="Jason Travel Service">
     <meta name="Publisher" content="프론트엔드 박소혜">
-    <meta name="Author-date" content="2021-01-14"> 
+    <meta name="Author-date" content="2021-01-15"> 
     <meta name="Author" content="Jason Travel Service">
     <meta name="Copyright" content="Jason Travel Service">
     <meta name="Keywords" content="Jason Travel Service, 여행, 관광">
@@ -55,10 +55,10 @@
 </head>
 <ul id="skip">
     <li><a href="#header" title="메뉴바로가기">메뉴바로가기</a></li>
-    <li><a href="$main" title="본문바로가기">본문바로가기</a></li>
+    <li><a href="#main" title="본문바로가기">본문바로가기</a></li>
     <li><a href="#footer" title="하단바로가기">하단바로가기</a></li>
 </ul>
-<body>
+<body class="intro">
     <div id="wrap">
         <header id="header"> <!-- height:124px position:fixed bgfff/transparent-->
             <div class="wrap"> <!-- width :1570 -->
@@ -67,7 +67,7 @@
                         <ul class="clearfix">
                             <li> <!-- 로고 / 로고가 가운데에 있지만 탭 키로 접근할 때 가장 먼저 접근하도록 하기 위해서 = 접근성땜에 -->
                                 
-                                <a href="http://www.jasontravel.co.kr/main/main.html" class="logo-btn">
+                                <a href="./index.php" class="logo-btn">
                                     <img src="./img/logo_white.png" alt="logo_white" class="white">
                                     <img src="./img/logo_color.png" alt="logo_color" class="color">
                                 </a>
@@ -84,12 +84,12 @@
                             </li>
                             <li> <!-- 오른쪽메뉴 -->
                                 <ul>
-                                    <li><span><a href="javascript:" title="login" class="login-btn">LOGIN</a></span></li>
+                                    <li><span><a href="./login.php" title="login" class="login-btn">LOGIN</a></span></li>
                                     <li><span><i></i></span></li>
-                                    <li><span><a href="javascript:" title="join" class="join-btn">JOIN</a></span></li>
+                                    <li><span><a href="./join.php" title="join" class="join-btn">JOIN</a></span></li>
                                     <li>
                                         <span>
-                                            <a href="javascript:" title="quote Contact" class="confirm-btn">
+                                            <a href="./confirm.php" title="quote Contact" class="confirm-btn">
                                                 <span>견적<br>문의</span><!-- 높이50 넓이110 -->
                                             </a>
                                         </span>
@@ -110,50 +110,50 @@
                 <div class="gap">
                     <div class="container">
                         <ul>
-                            <li><a href="#" class="main-btn">여행테마</a>
+                            <li><a href="./main1-1.php" class="main-btn">여행테마</a>
                                 <div class="sub sub1">
                                     <div class="sub-wrap">
                                         <div class="sub-gap">
                                             <ul>
-                                                <li><a href="#" class="sub-btn">베트남 / 발리 / 태국</a></li>
-                                                <li><a href="#" class="sub-btn">몰디브 및 특수지역</a></li>
-                                                <li><a href="#" class="sub-btn">유럽</a></li>
-                                                <li><a href="#" class="sub-btn">그 외 지역</a></li>
-                                                <li><a href="#" class="sub-btn">아만 리조트</a></li>
-                                                <li><a href="#" class="sub-btn">럭셔리</a></li>
-                                                <li><a href="#" class="sub-btn">가족</a></li>
-                                                <li><a href="#" class="sub-btn">허니문</a></li>
-                                                <li><a href="#" class="sub-btn">태교여행</a></li>
+                                                <li><a href="./main1-1.php" class="sub-btn">베트남 / 발리 / 태국</a></li>
+                                                <li><a href="./main1-2.php" class="sub-btn">몰디브 및 특수지역</a></li>
+                                                <li><a href="./main1-3.php" class="sub-btn">유럽</a></li>
+                                                <li><a href="./main1-4.php" class="sub-btn">그 외 지역</a></li>
+                                                <li><a href="./main1-5.php" class="sub-btn">아만 리조트</a></li>
+                                                <li><a href="./main1-6.php" class="sub-btn">럭셔리</a></li>
+                                                <li><a href="./main1-7.php" class="sub-btn">가족</a></li>
+                                                <li><a href="./main1-8.php" class="sub-btn">허니문</a></li>
+                                                <li><a href="./main1-9.php" class="sub-btn">태교여행</a></li>
                                             </ul>
                                         </div>
                                     </div>
                                 </div>
                             </li>
-                            <li><a href="#" class="main-btn">프로모션</a></li>
-                            <li><a href="" class="main-btn">JTS 소식</a></li>
-                            <li><a href="#" class="main-btn">여행후기</a></li>
-                            <li><a href="#" class="main-btn">여행문의</a>
+                            <li><a href="./main2.php" class="main-btn">프로모션</a></li>
+                            <li><a href="./main3.php" class="main-btn">JTS 소식</a></li>
+                            <li><a href="./main4.php" class="main-btn">여행후기</a></li>
+                            <li><a href="./main5-1.php" class="main-btn">여행문의</a>
                                 <div class="sub sub2">
                                     <div class="sub-wrap">
                                         <div class="sub-gap">
                                             <ul>  
-                                                <li><a href="" class="sub-btn">일반여행문의</a></li>
-                                                <li><a href="" class="sub-btn">단체여행문의</a></li>
-                                                <li><a href="" class="sub-btn">리조트견적요청</a></li>
+                                                <li><a href="./main5-1.php" class="sub-btn">일반여행문의</a></li>
+                                                <li><a href="./main5-2.php" class="sub-btn">단체여행문의</a></li>
+                                                <li><a href="./main5-3.php" class="sub-btn">리조트견적요청</a></li>
                                             </ul>
                                         </div>
                                     </div>
                                 </div>
                             </li>
-                            <li><a href="#" class="main-btn">회사소개</a>
+                            <li><a href="./main6-1.php" class="main-btn">회사소개</a>
                                 <div class="sub sub6">
                                     <div class="sub-wrap">
                                         <div class="sub-gap">
                                             <ul>   
-                                                <li><a href="" class="sub-btn">About Us </a></li>
-                                                <li><a href="" class="sub-btn">회사연혁</a></li>
-                                                <li><a href="" class="sub-btn">오시는길</a></li>
-                                                <li><a href="" class="sub-btn">공지사항</a></li>
+                                                <li><a href="./main6-1.php" class="sub-btn">About Us </a></li>
+                                                <li><a href="./main6-2.php" class="sub-btn">회사연혁</a></li>
+                                                <li><a href="./main6-3.php" class="sub-btn">오시는길</a></li>
+                                                <li><a href="./main6-4.php" class="sub-btn">공지사항</a></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -164,3 +164,5 @@
                 </div>
             </div>
         </nav>
+
+

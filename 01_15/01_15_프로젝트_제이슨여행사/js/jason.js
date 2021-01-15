@@ -7,8 +7,6 @@
                 that.section2Fn();
                 that.section3Fn();
                 that.section4Fn();
-                that.section5Fn();
-                that.footerFn();
         },
         headerFn   : function(){
             var $this = null;
@@ -19,7 +17,7 @@
             var $windowW = $window.innerWidth();
             var $scroll = false; //스크롤 여부를 알려주는 변수
             var $htmlBody = $("html, body");
-            var $section2 = $("#section2");
+            var $section2 = $("#section2"); //전체 섹션 공용 사용
             var t = false;
             var $menuBar= $("#header .menu-bar");
             var $nav = $("#nav");
@@ -143,22 +141,22 @@
             var cnt2 = 0;
             var setId = 0;
             var setId2 = 0;
-            var n = $("#section1 .slide").length-2;
-            var $nextBtn = $("#section1 .next-btn");
-            var $prevBtn = $("#section1 .prev-btn");
-            var $slideWrap = $("#section1 .slide-wrap");
-            var $pageBtn = $("#section1 .page-btn");
+            var n = $("#main #section1 .slide").length-2;
+            var $nextBtn = $("#main #section1 .next-btn");
+            var $prevBtn = $("#main #section1 .prev-btn");
+            var $slideWrap = $("#main #section1 .slide-wrap");
+            var $pageBtn = $("#main #section1 .page-btn");
             var $s = 4;
-            var $slideContainer = $("#section1 .slide-container");
+            var $slideContainer = $("#main #section1 .slide-container");
             var $smoothBtn = $(".smooth-btn");
             var $htmlBody = $("html, body");
             var $headerH = $("#header").innerHeight();
             var $window = $(window);
             var $winW = $window.innerWidth();
             var $winH = $window.innerHeight();
-            var $section1 = $("#section1");
-            var $section2 = $("#section2");
-            var $slide = $("#section1 .slide");
+            var $section1 = $("#section1");//모든 페이지 공용 사용
+            var $section2 = $("#main #section2");
+            var $slide = $("#main #section1 .slide");
 
             /////////////////////////슬라이드/////////////////////////
 
@@ -310,7 +308,7 @@
         },
         section2Fn : function(){
             var $win = $(window);
-            var $gal = $("#section2 .gallery li");
+            var $gal = $("#main #section2 .gallery li");
             var $galW = $gal.innerWidth();
             var $galH = $galW * $imageR;
             var $imageR = 0.83243503;
@@ -331,12 +329,12 @@
             //slide-view 너비 1360이하 = 박스 높이 자동 설정
             var $window = $(window);
             var $winW = $(window).innerWidth();
-            var $slideView = $("#section3 .slide-view");
+            var $slideView = $("#main #section3 .slide-view");
             var $slideViewR = 0.419117647;
-            var $pageBtnW = $("#section3 .pageBtn").innerWidth();
-            var $pageWrap = $("#section3 .page-wrap");
-            var $slideBg  = $("#section3 .slide-bg-image");
-            var $slideBgW = $("#section3 .slide-bg-image").innerWidth();
+            var $pageBtnW = $("#main #section3 .pageBtn").innerWidth();
+            var $pageWrap = $("#main #section3 .page-wrap");
+            var $slideBg  = $("#main #section3 .slide-bg-image");
+            var $slideBgW = $("#main #section3 .slide-bg-image").innerWidth();
 
             setTimeout(resizeFn,10);
 
@@ -360,11 +358,11 @@
             //페이드 인 아웃 반응형 슬라이드 웹개발
             var cnt = 0;
             var setId = null;
-            var $slide = $("#section3 .slide");
-            var $nextBtn = $("#section3 .nextBtn");
-            var $prevBtn = $("#section3 .prevBtn");
+            var $slide = $("#main #section3 .slide");
+            var $nextBtn = $("#main #section3 .nextBtn");
+            var $prevBtn = $("#main #section3 .prevBtn");
             var n = $slide.length-1; // 0 1 2 슬라이드 3개 index에서 1 빼주기
-            var $pageBtn = $("#section3 .pageBtn");
+            var $pageBtn = $("#main #section3 .pageBtn");
             var a = [1,2]; //초기값 | 페이지2번 3번 
 
             //1번. 페이드 인 아웃 메인함수 만들기 
@@ -627,13 +625,8 @@
                 resizeFn();
             })
 
-        },
-        section5Fn : function(){
-            
-        },
-        footerFn : function(){
-                
         }
+        
     }
 
     jason.init();

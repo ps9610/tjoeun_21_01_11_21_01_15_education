@@ -19,6 +19,17 @@
 
     #wrap #main #section2 .wrap .gap .container .content .gallery > li .gallery-wrap .caption > h4 {font-size:/* 14px */0.8917197452vw;}/* 창너비에 따른 비율계산 */
     #wrap #main #section2 .wrap .gap .container .content .gallery > li .gallery-wrap .caption > h3 {font-size:/* 20px */1.2738853503vw;}/* 창너비에 따른 비율계산 */
+    
+    /* login-page */
+    #wrap #login #section2 .wrap .gap .container .content > ul > li {float:left;}
+    #wrap #login #section2 .wrap .gap .container .content > ul > li .content-gap {width:100%;}
+    #wrap #login #section2 .wrap .gap .container .content > ul > li .content-gap .title {width:100%;}
+    #wrap #login #section2 .wrap .gap .container .content > ul > li .content-gap .title > h3 {font-size:17px;}
+    #wrap #login #section2 .wrap .gap .container .content > ul > li .content-gap .title > h2 {font-size:35px;}
+    #wrap #login #section2 .wrap .gap .container .content > ul > li:nth-child(1) {width:32.0261438%;}
+    #wrap #login #section2 .wrap .gap .container .content > ul > li:nth-child(2) {width:35.9477124%;min-width:550px;}
+    #wrap #login #section2 .wrap .gap .container .content > ul > li:nth-child(3) {width:32.0261438%;}
+
 }
 
 @media all and (max-width:1200px){ /* 모바일 모드 */
@@ -58,8 +69,17 @@
     #wrap #main #section3 .wrap .gap .container .content .slide-container .slide-view .slide-wrap .slide .slide-content .right-wrap .text-gap .slide-text > h3 {font-size:19px;}
     #wrap #main #section3 .wrap .gap .container .content .slide-container .slide-view .slide-wrap .slide .slide-content .right-wrap .text-gap .slide-text > h4 {font-size:14px;}
     #wrap #main #section3 .wrap .gap .container .content .slide-container .slide-view .slide-wrap .slide .slide-content .right-wrap .text-gap .slide-text > h4 {font-size:13px;line-height:130%;}
-}
 
+     /* login-page */
+     #wrap #login #section2 .wrap .gap .container .content > ul > li {float:none;}
+     #wrap #login #section2 .wrap .gap .container .content > ul > li .content-gap {width:100%;}
+     #wrap #login #section2 .wrap .gap .container .content > ul > li .content-gap .title {width:100%;}
+     #wrap #login #section2 .wrap .gap .container .content > ul > li .content-gap .title > h3 {font-size:17px;}
+     #wrap #login #section2 .wrap .gap .container .content > ul > li .content-gap .title > h2 {font-size:35px;}
+     #wrap #login #section2 .wrap .gap .container .content > ul > li:nth-child(1) {width:90%;margin:0 5%;}
+     #wrap #login #section2 .wrap .gap .container .content > ul > li:nth-child(2) {width:90%;margin:0 5%;min-width:320px;}
+     #wrap #login #section2 .wrap .gap .container .content > ul > li:nth-child(3) {width:90%;margin:0 5%;}
+}
 @media all and (max-width:860px){ /* 모바일 모드 */
     #wrap #footer .wrap .footer-gap .content .content-gap .right-wrap .address-row1 .address-row1-left {float:none;margin-bottom:20px;padding-bottom:10px;}
     #wrap #footer .wrap .footer-gap .content .content-gap .right-wrap .address-row1 .address-row1-right {float:none;padding-bottom:10px;}
@@ -78,6 +98,8 @@
     #wrap #nav .wrap .gap .container > ul > li .sub {display:block;position:relative;top:0;left:0;width:100%;height:auto;background:transparent;}
     #wrap #nav .wrap .gap .container > ul > li .sub .sub-wrap .sub-gap {margin:0;padding-bottom:20px;}
     #wrap #nav .wrap .gap .container > ul > li .sub .sub-wrap .sub-gap > ul > li {display:block;margin:0;line-height:11px;padding-bottom:10px;}
+    #wrap #nav .wrap .gap .container > ul > li .sub .sub-wrap .sub-gap > ul > li:hover {border-bottom:2px solid transparent;}
+    #wrap #nav .wrap .gap .container > ul > li .sub .sub-wrap .sub-gap > ul > li:hover {border-bottom:2px solid transparent;}
     #wrap #nav .wrap .gap .container > ul > li .sub .sub-wrap .sub-gap > ul > li > a {color:#aaa;font-size:12.7px;padding-bottom:1px;padding:0 15px;border-left:0;border-bottom:1px solid transparent;}
     #wrap #nav .wrap .gap .container > ul > li .sub .sub-wrap .sub-gap > ul > li:first-child > a {border-left:0;}
     #wrap #nav .wrap .gap .container > ul > li .sub .sub-wrap .sub-gap > ul > li > a:hover {color:#fff;border-bottom:1px solid #fff;}
